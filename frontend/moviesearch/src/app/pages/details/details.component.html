@@ -1,0 +1,115 @@
+<div class="jumbotron progressive replace" [style.backgroundImage]="'url('+ environ.imagePosBaseURL + detail.poster_path +')'" style="height: 500px;background-repeat: no-repeat;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-8">
+        <h1>{{ detail.original_title }}</h1>
+        <p>{{detail.overview}}</p>
+        <p class="lead text-muted">Release Date-:{{detail.release_date}}</p>
+         <span *ngFor="let word of keywords.keywords" class="badge badge-info" style="margin: 5px;" >{{word.name}}</span><br>
+         <button  type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: 5px; margin-top: 10px;">
+            See Crew Members
+          </button>
+          <button  type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#titles" style="margin:5px; ">
+            See Alternative Titles
+          </button> 
+          <button  type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cast" style="margin-top:5px; ">
+            See Cast Members
+          </button> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade  bd-example-modal-lg" id="crew" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crew Member Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Job</th>
+                <th scope="col">Department</th>
+              </tr>
+            </thead>
+            <div *ngIf="crewLoad"> Loading..</div>
+            <tbody>
+              <tr *ngFor="let member of crew.crew">
+                <td scope="row">{{member.name}}</td>
+                <td>{{member.job}}</td>
+                <td>{{member.department}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade  bd-example-modal-lg" id="cast" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Cast Member Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Character</th>
+              </tr>
+            </thead>
+            <div *ngIf="crewLoad"> Loading..</div>
+            <tbody>
+              <tr *ngFor="let member of crew.cast">
+                <td scope="row">{{member.name}}</td>
+                <td>{{member.character}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="titles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alternative Titles</h5><br>
+        <p class="text-muted modal-title">(Scroll over them to see their type)</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="titleLoad"> Loading..</div>
+
+         <span *ngFor="let word of titles.titles" title={{word.type}} class="badge badge-info" style="margin: 5px;" >{{word.title}}</span>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

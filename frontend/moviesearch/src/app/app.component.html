@@ -1,0 +1,21 @@
+<div class="root__container">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">
+      <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        Movie Search Engine
+    </a>
+    <form class="form-inline" (ngSubmit)="search()" #f="ngForm">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"            [(ngModel)]="query" name="query" required>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  <!-- Main Content -->
+
+  <!--<router-outlet></router-outlet>-->
+  <main class="main__container">
+    <div class="main-container__bg"></div>
+    <router-outlet></router-outlet>
+  </main>
+
+
+</div>

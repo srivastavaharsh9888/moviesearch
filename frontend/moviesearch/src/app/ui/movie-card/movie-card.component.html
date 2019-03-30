@@ -1,0 +1,24 @@
+<h3  style="margin-left:40%;margin-top:3%;">The result of {{ headerString }}-:</h3>
+<h4 *ngIf="bind" style="margin-left:40%;margin-top:3%;">Loading...</h4>
+<div class="card-columns" 
+      infinite-scroll
+      (scrolled)="onScrollDown()"
+      [infiniteScrollDistance]="5"
+      [infiniteScrollThrottle]="50"
+  >
+  <div class="card" *ngFor="let movie of movieList.results" (click)=openDetails(movie.id,movie) style="cursor: pointer;" >
+    <a href="{{environ.imageBackBaseURL}}{{movie.backdrop_path}}" class="progressive replace">
+      <img src="{{environ.imageBackBaseURL}}{{movie.backdrop_path}}" class="preview one" alt="image" />
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{movie.original_title}}</h5>
+      <p class="card-text">{{movie.overview}}</p>
+      <div class="card-footer">
+        <small class="text-muted">Release Date-:{{movie.release_date}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+<h4 *ngIf="bind" style="margin-left:40%;margin-top:3%;">Loading...</h4>
+<h4 *ngIf="finished" style="margin-left:40%;margin-top:3%;">End of the Results</h4>
+<h4 *ngIf="resultFound" style="margin-left:40%;margin-top:3%;">Sorry No Results Found</h4>
