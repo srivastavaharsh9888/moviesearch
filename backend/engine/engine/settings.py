@@ -86,20 +86,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'engine.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+#in second parameter of get you can put your own database settings
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['DBS_NAME'],
-        'USER': os.environ['DBS_USER'],
-        'PASSWORD': os.environ['DBS_PASS'],
-        'HOST': os.environ['DBS_HOST'],
-        'PORT': '5432',
+        'NAME': os.environ.get('DBS_NAME','movie'),
+        'USER': os.environ.get('DBS_USER','harsh'),
+        'PASSWORD': os.environ.get('DBS_PASS','shubharsh1998'),
+        'HOST': os.environ.get('DBS_HOST','localhost'),
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
